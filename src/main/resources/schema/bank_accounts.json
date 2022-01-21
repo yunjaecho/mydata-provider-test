@@ -1,0 +1,26 @@
+{
+    "title": "강아지 스키마",
+    "description": "이 스키마는 강아지에 관한 데이터를 검증하기 위해 작성된 스키마임.",
+    "type": "object",
+    "properties": {
+        "rsp_code": {"type": "string", "pattern": "^[0-9]{5}$"},
+        "rsp_msg": {"type": "string", "maxLength": 3},
+        "search_timestamp": {"type": "string"},
+        "reg_date": {"type": "string"},
+        "account_cnt": {"type": "string"},
+        "account_list": {
+            "type": "array",
+            "properties": {
+                "account_num": {"type": "string"},
+                "seqno": {"type": "string"},
+                "is_foreign_deposit": {"type": "string"},
+                "prod_name": {"type": "string"},
+                "is_minus": {"type": "string"},
+                "account_type": {"type": "string", "pattern": "^([1001][1002][1003][1999][2001][2002][2003][2004][2999][3100][3150][3170][3200][3210][3220][3230][3240][3245][3250][3260][3270][3271][3290][3400][3500][3510][3590][3700][3710][3999])$"},
+                "account_status": {"type": "string", "enum": ["01", "02"] }
+            },
+            "required": ["account_num", "prod_name", "account_type", "account_status"]
+        }
+    },
+    "required": ["rsp_code", "rsp_msg"]
+}
