@@ -6,7 +6,10 @@
         "rsp_code": {"type": "string", "pattern": "[0-9]{5}}$"},
         "rsp_msg": {"type": "string", "maxLength": 3},
         "search_timestamp": {"type": "string"},
-        "reg_date": {"type": "string"},
+        "reg_date": {
+            "type": "string",
+            "pattern": "^\d{4}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])$"
+        },
         "account_cnt": {"type": "string"},
         "account_list": {
             "type": "array",

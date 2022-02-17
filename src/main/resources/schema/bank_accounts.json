@@ -6,17 +6,26 @@
         "rsp_code": {"type": "string", "pattern": "^[0-9]{5}$"},
         "rsp_msg": {"type": "string", "maxLength": 3},
         "search_timestamp": {"type": "string"},
-        "reg_date": {"type": "string"},
-        "account_cnt": {"type": "string"},
+        "reg_date": {
+            "type": "string",
+            "pattern": "^\\d{4}(0?[1-9]|1[012])(0?[1-9]|[12][0-9]|3[01])$"
+        },
         "account_list": {
             "type": "array",
+            "items": {"$ref":  "#/$defs/account"}
+        }
+    },
+    "$defs": {
+        "account": {
+            "type": "object",
             "properties": {
                 "account_num": {"type": "string"},
                 "seqno": {"type": "string"},
-                "is_foreign_deposit": {"type": "string"},
+                "is_consent": {"type": "string", "enum": ["true", "false"]},
+                "is_foreign_deposit": {"type": "string", "enum": ["true", "false"]},
                 "prod_name": {"type": "string"},
                 "is_minus": {"type": "string"},
-                "account_type": {"type": "string", "pattern": "^([1001][1002][1003][1999][2001][2002][2003][2004][2999][3100][3150][3170][3200][3210][3220][3230][3240][3245][3250][3260][3270][3271][3290][3400][3500][3510][3590][3700][3710][3999])$"},
+                "account_type": {"type": "string"},
                 "account_status": {"type": "string", "enum": ["01", "02"] }
             },
             "required": ["account_num", "prod_name", "account_type", "account_status"]
